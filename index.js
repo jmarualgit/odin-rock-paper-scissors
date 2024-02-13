@@ -57,10 +57,13 @@ function playRound(playerSelection, computerSelection) {
 }
 
 const playerSelection = 'Scissors';
-const computerSelection = getComputerChoice();
 
-let result = playRound(playerSelection, computerSelection);
+function playGame() {
+    for (i = 0; i < 5; i++) {
+        let computerSelection = getComputerChoice();
 
-console.log(`Player chooses ${playerSelection}!`)
-console.log(`Computer chooses ${computerSelection}!`)
-console.log(result);
+        console.log(`Round ${i}: ${playRound(playerSelection, computerSelection)}`);
+    }
+}
+
+playGame();
