@@ -45,6 +45,10 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 
+    // capitalize the first letter of the words
+    playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.substring(1);
+    computerSelection = computerSelection.charAt(0).toUpperCase() + computerSelection.substring(1);
+
     if (result == 'W') {
         return `You win! ${playerSelection} beats ${computerSelection}!`
     } else {
