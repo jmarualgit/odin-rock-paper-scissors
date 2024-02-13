@@ -56,10 +56,11 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-let playerSelection = prompt("What will you choose?");
+
 
 function playGame() {
     for (i = 0; i < 5; i++) {
+        let playerSelection = prompt("What will you choose?");
         let computerSelection = getComputerChoice();
 
         console.log(`Round ${i}: ${playRound(playerSelection, computerSelection)}`);
