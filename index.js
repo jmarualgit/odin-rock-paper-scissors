@@ -23,6 +23,7 @@ function playRound(playerSelection, computerSelection) {
         return 'It was a tie!';
     }
 
+    // base value
     let result = 'W';
 
     if (playerSelection == 'rock') {
@@ -56,15 +57,19 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-
-
+// play 5 rounds
 function playGame() {
+    // reiterate 5 times
     for (i = 0; i < 5; i++) {
+        // prompts the user
         let playerSelection = prompt("What will you choose?");
+
+        // picks randomly between rock, paper, or scissors and puts it into variable
         let computerSelection = getComputerChoice();
 
         console.log(`Round ${i}: ${playRound(playerSelection, computerSelection)}`);
     }
 }
 
+// initiate
 playGame();
