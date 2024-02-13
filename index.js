@@ -56,7 +56,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-const playerSelection = 'Scissors';
+let playerSelection = prompt("What will you choose?");
 
 function playGame() {
     for (i = 0; i < 5; i++) {
