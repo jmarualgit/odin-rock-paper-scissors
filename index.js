@@ -1,3 +1,6 @@
+let playerWins = 0;
+let computerWins = 0;
+
 // randomly returns rock, paper, or scissors
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3) + 1;
@@ -14,6 +17,16 @@ function getComputerChoice() {
 
 // console.log(getComputerChoice())
 
+function determineTotalWinner(playerWins, computerWins) {
+    if (playerWins > computerWins) {
+        console.log(`Player wins with ${playerWins} total wins!`);
+    } else if (playerWins < computerWins) {
+        console.log(`Computer wins with ${computerWins} total wins!`);
+    } else {
+        console.log(tie);
+    }
+}
+
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
 
@@ -29,20 +42,26 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection == 'rock') {
         if (computerSelection == 'scissor') {
             result = 'W';   // rock v scissors  W
+            playerWins++;
         } else {
             result = 'L';   // rock v paper     L
+            computerWins++;
         }
     } else if (playerSelection == 'paper') {
         if (computerSelection == 'rock') {
             result = 'W';   // paper v rock     W
+            playerWins++;
         } else {
             result = 'L';   // paper v scissor  L
+            computerWins++;
         }
     } else {        // scissors
         if (computerSelection == 'paper') {
             result = 'W';   // scissor v paper  W
+            playerWins++;
         } else {
             result = 'L';   // paper v rock     L
+            computerWins++;
         }
     }
 
@@ -69,6 +88,8 @@ function playGame() {
 
         console.log(`Round ${i}: ${playRound(playerSelection, computerSelection)}`);
     }
+
+    determineTotalWinner(playerWins, computerWins);
 }
 
 // initiate
