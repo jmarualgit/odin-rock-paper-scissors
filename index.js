@@ -1,3 +1,6 @@
+const rockButton = document.getElementById('rock');
+const paperButton = document.getElementById('paper');
+const scissorsButton = document.getElementById('scissors');
 let playerWins = 0;
 let computerWins = 0;
 
@@ -27,6 +30,52 @@ function determineTotalWinner(playerWins, computerWins) {
     }
 }
 
+function disableButtons() {
+    document.getElementById('rock').disabled = true;
+    document.getElementById('paper').disabled = true;
+    document.getElementById('scissors').disabled = true;
+}
+
+function enableButtons() {
+    document.getElementById('rock').disabled = false;
+    document.getElementById('paper').disabled = false;
+    document.getElementById('scissors').disabled = false;
+}
+
+function getWinner() {
+    if (playerWins == 5) {
+        return 'Player';
+    } else if (computerWins == 5) {
+        return 'Computer';
+    } else {
+        return '';
+    }
+}
+
+function resetGame() {
+    playerWins = 0;
+    computerWins = 0;
+}
+
+function displayResetButton() {
+    const resultDiv = document.querySelector('#results-container');
+    const resetButton = document.createElement('button');
+
+    resetButton.textContent = 'Play Again!';
+
+    resultDiv.appendChild(resetButton);
+
+    resetButton.addEventListener('click', () => {
+        resetGame();
+        resetButton.remove();
+
+        const resultText = document.getElementById('result-text');
+        resultText.textContent = '';
+
+        enableButtons();
+    });
+}
+
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
 
@@ -40,7 +89,7 @@ function playRound(playerSelection, computerSelection) {
     let result = 'W';
 
     if (playerSelection == 'rock') {
-        if (computerSelection == 'scissor') {
+        if (computerSelection == 'scissors') {
             result = 'W';   // rock v scissors  W
             playerWins++;
         } else {
@@ -65,6 +114,14 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 
+    if (getWinner() != '') {
+        const resultText = document.getElementById('result-text');
+
+        resultText.textContent = `${getWinner()} wins! Score: (YOU) ${playerWins}, (PC) ${computerWins}`;
+        disableButtons();
+        displayResetButton();
+    }
+
     // capitalize the first letter of the words
     playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.substring(1);
     computerSelection = computerSelection.charAt(0).toUpperCase() + computerSelection.substring(1);
@@ -74,9 +131,12 @@ function playRound(playerSelection, computerSelection) {
     } else {
         return `You lose! ${playerSelection} loses to ${computerSelection}!`;
     }
+
+    
 }
 
 // play 5 rounds
+/*
 function playGame() {
     // reiterate 5 times
     for (i = 0; i < 5; i++) {
@@ -91,6 +151,19 @@ function playGame() {
 
     determineTotalWinner(playerWins, computerWins);
 }
+*/
+
+rockButton.addEventListener("click", () => {
+    console.log(playRound('rock', getComputerChoice()));
+});
+
+paperButton.addEventListener("click", () => {
+    console.log(playRound('paper', getComputerChoice()));
+});
+
+scissorsButton.addEventListener("click", () => {
+    console.log(playRound('scissors', getComputerChoice()));
+});
 
 // initiate
-playGame();
+//playGame();
