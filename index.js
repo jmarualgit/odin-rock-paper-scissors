@@ -1,3 +1,6 @@
+const rockButton = document.getElementById('rock');
+const paperButton = document.getElementById('paper');
+const scissorsButton = document.getElementById('scissors');
 let playerWins = 0;
 let computerWins = 0;
 
@@ -25,6 +28,12 @@ function determineTotalWinner(playerWins, computerWins) {
     } else {
         console.log(tie);
     }
+}
+
+function disableButtons() {
+    document.getElementById('rock').disabled = true;
+    document.getElementById('paper').disabled = true;
+    document.getElementById('scissors').disabled = true;
 }
 
 function getWinner() {
@@ -84,7 +93,7 @@ function playRound(playerSelection, computerSelection) {
         const resultText = document.getElementById('result-text');
 
         resultText.textContent = `${getWinner()} wins! Score: (YOU) ${playerWins}, (PC) ${computerWins}`;
-
+        disableButtons();
         resetGame();
     }
 
@@ -118,10 +127,6 @@ function playGame() {
     determineTotalWinner(playerWins, computerWins);
 }
 */
-
-const rockButton = document.getElementById('rock');
-const paperButton = document.getElementById('paper');
-const scissorsButton = document.getElementById('scissors');
 
 rockButton.addEventListener("click", () => {
     console.log(playRound('rock', getComputerChoice()));
