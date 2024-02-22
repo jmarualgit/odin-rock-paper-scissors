@@ -36,6 +36,12 @@ function disableButtons() {
     document.getElementById('scissors').disabled = true;
 }
 
+function enableButtons() {
+    document.getElementById('rock').disabled = false;
+    document.getElementById('paper').disabled = false;
+    document.getElementById('scissors').disabled = false;
+}
+
 function getWinner() {
     if (playerWins == 5) {
         return 'Player';
@@ -49,6 +55,25 @@ function getWinner() {
 function resetGame() {
     playerWins = 0;
     computerWins = 0;
+}
+
+function displayResetButton() {
+    const resultDiv = document.querySelector('#results-container');
+    const resetButton = document.createElement('button');
+
+    resetButton.textContent = 'Play Again!';
+
+    resultDiv.appendChild(resetButton);
+
+    resetButton.addEventListener('click', () => {
+        resetGame();
+        resetButton.remove();
+
+        const resultText = document.getElementById('result-text');
+        resultText.textContent = '';
+
+        enableButtons();
+    });
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -94,7 +119,7 @@ function playRound(playerSelection, computerSelection) {
 
         resultText.textContent = `${getWinner()} wins! Score: (YOU) ${playerWins}, (PC) ${computerWins}`;
         disableButtons();
-        resetGame();
+        displayResetButton();
     }
 
     // capitalize the first letter of the words
