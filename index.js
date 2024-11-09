@@ -1,6 +1,7 @@
 const rockButton = document.getElementById('rock');
 const paperButton = document.getElementById('paper');
 const scissorsButton = document.getElementById('scissors');
+let roundResultText = document.getElementById("round-result");
 let playerWins = 0;
 let computerWins = 0;
 
@@ -55,6 +56,7 @@ function getWinner() {
 function resetGame() {
     playerWins = 0;
     computerWins = 0;
+    roundResultText.textContent = "";
 }
 
 function displayResetButton() {
@@ -125,11 +127,19 @@ function playRound(playerSelection, computerSelection) {
     // capitalize the first letter of the words
     playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.substring(1);
     computerSelection = computerSelection.charAt(0).toUpperCase() + computerSelection.substring(1);
-
+    
     if (result == 'W') {
-        return `You win! ${playerSelection} beats ${computerSelection}!`
+        let resultText = `You win! ${playerSelection} beats ${computerSelection}!`
+
+        roundResultText.textContent = resultText;
+
+        return resultText;
     } else {
-        return `You lose! ${playerSelection} loses to ${computerSelection}!`;
+        let resultText = `You lose! ${playerSelection} loses to ${computerSelection}!`
+
+        roundResultText.textContent = resultText;
+
+        return resultText;
     }
 
     
